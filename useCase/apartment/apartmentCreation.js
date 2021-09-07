@@ -14,16 +14,27 @@ const createApartment = async (req, res) => {
       let apartment = new Apartment(req.body);
       // Validate user input
       if (!(apartment.address && apartment.zipcode && apartment.city && apartment.country)) {
-        res.status(400).send("All input is required");
+        res.status(400).send({ success: false, error: "All input is required" });
       }
       // Save apartment Details
       await apartment.save();
       user.apartments.push(apartment);
       await user.save();
+
       // return new apartment
-      res.status(201).json({success:true, data: apartment });
+      res.status(200).json({
+        success: true,
+        message: "Apartment creation Successful!!!",
+        data: {
+          Address: apartment.address,
+          Zipcode: apartment.zipcode,
+          City: apartment.city, 
+          Country: apartment.country,
+          Room: apartment.room
+        } 
+      });
     } catch (err) {
-      console.log(err);
+      return res.status(404).send({success:false, error: err.message });
     }
   }
 module.exports = createApartment;

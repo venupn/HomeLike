@@ -7,12 +7,12 @@ const filterApartmentBasedOnZipCode = async (req, res) => {
       await axios.get(zipCodeUri)
           .then(async response => {
             let zipCodes = response.data.zip_codes;
-            let apartment = await Apartment.find().exec();
-              let details = apartment.filter(item => zipCodes.some(data => data.zip_code === item.zipcode));
-              res.status(201).json({ success: true, data: details })
-        })
-        .catch(error => {
-          console.log(error);
+              let apartmentList = await Apartment.find({},{ __v: 0, createdAt: 0, updatedAt: 0, favouriteUser: 0,user:0 }).exec();
+              let apartment = apartmentList.filter(item => zipCodes.some(data => data.zip_code === item.zipcode));
+              res.status(200).json({ success: true, data: apartment})
+        }) 
+        .catch(err => {
+          return res.status(401).json({ success: false, error: err.message });
         });
 }
 

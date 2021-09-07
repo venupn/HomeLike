@@ -11,7 +11,12 @@ const apartmentSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'user',
         required: true
-     }
-},{timestamps: true});
+    },
+    favouriteUser: [{
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+     }]
+}, { timestamps: true });
 
 module.exports = mongoose.model("apartment", apartmentSchema);
