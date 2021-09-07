@@ -4,9 +4,19 @@ Furnished apartments for business travelers
 This is a example of a HomeLike application providing a REST
 API to retrieve information from Database (Mongoose).
 
-The entire application is contained within the `HomeLike` file.
+The entire application is contained within the `HomeLike` file and was developed using NodeJS and Mongoose database
 
-`config.ru` is a minimal Rack configuration for unicorn.
+Please provide the following details in .env file 
+- MONGO_URI: server details of database(mongoose database is used)
+- TOKEN_KEY
+- ZIPCODE_URI: this URL contains an external API call which accepts Zipcode, distance and unit as input and output will be, all the zipcode in the given distance radius. Please Generate the APIKey from website - https://www.zipcodeapi.com/API and copy it to
+- API_PORT: Port details
+
+Folder structure
+- Authentication: Contains files to generate JWT token
+- Config: Contains files to connect to database
+- Model: Create models for apartment and user
+- UseCase: Contains functions which is to be invoked when corresponding endpoint is called
 
 `run-tests.sh` runs a simplistic test and generates the API
 documentation below.
