@@ -18,9 +18,6 @@ Folder structure
 - Model: Create models for apartment and user
 - UseCase: Contains functions which is to be invoked when corresponding endpoint is called
 
-`run-tests.sh` runs a simplistic test and generates the API
-documentation below.
-
 ## Install
 
     npm install
@@ -28,10 +25,6 @@ documentation below.
 ## Run the app
 
     npm run start
-
-## Run the tests
-
-    ./run-tests.sh
 
 # REST API
 
